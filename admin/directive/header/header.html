@@ -1,0 +1,17 @@
+<div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    App
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="admin" ng-show="isAuthenticated && user && user.type=='ADMIN'">Users</a></li>
+                <li><a ui-sref="task" ng-show="isAuthenticated && user && user.type!='ADMIN'">Tasks</a></li>
+                <li><a ui-sref="login" ng-show="!isAuthenticated">Login</a></li>
+                <li><a ng-click="logout()" ng-show="isAuthenticated">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

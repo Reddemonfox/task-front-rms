@@ -1,0 +1,49 @@
+<div class="col-md-12" ng-controller="OrderCtrl">
+    <form ng-show="isCreating" class="login-form col-md-6 col-xs-12 col-md-offset-3 col-xs-offset-0" name="orderForm" novalidate="novalidate">
+        <h2>Create New Order <button class="btn btn-danger" ng-click="isCreating = false;" style="float:right">Close</button></h2>
+        <hr>
+        <div class="form-group">
+            <label >Item</label>
+            <angucomplete-alt id="item-name"
+                              placeholder="Search items"
+                              pause="100"
+                              selected-object="selectedItem"
+                              local-data="items"
+                              search-fields="name"
+                              title-field="name"
+                              minlength="1"
+                              input-class="form-control form-control-small"/>
+        </div>
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" class="form-control" ng-model="newOrder.customerName" id="customer-name" placeholder="Customer Name" required>
+        </div>
+        <div class="form-group">
+            <label>Customer Phone</label>
+            <input type="text" class="form-control" ng-model="newOrder.customerName" id="customer-phone" placeholder="Customer Number" required>
+        </div>
+        <button type="button" ng-disabled="branchForm.$invalid" ng-click="createBranch()"  class="btn btn-default">Submit</button>
+    </form>
+    <div ng-show="!isCreating">
+        <h3>Users</h3>
+        <div class="btn-group" style="float:right">
+            <button class="btn btn-success"  ng-click="isCreating = true;">Add New</button>
+            <button class="btn btn-info" ng-click="getBranches()">Refresh</button>
+        </div>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <td><strong>S. No.</strong></td>
+                <td><strong>Name</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in branches">
+                <td ng-bind="$index +1"></td>
+                <td ng-bind="row.name"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

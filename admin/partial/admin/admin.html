@@ -1,0 +1,50 @@
+<div class="col-md-12" ng-controller="AdminCtrl">
+    <form ng-show="isCreating" class="login-form col-md-6 col-xs-12 col-md-offset-3 col-xs-offset-0" name="userForm" novalidate="novalidate">
+        <h2>Create New User <button class="btn btn-danger" ng-click="isCreating = false;" style="float:right">Close</button></h2>
+        <hr>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" ng-model="newUser.name" id="name" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Branch Name</label>
+            <select name="branchSelect" class="form-control" ng-model="newUser.selectedBranch" required>
+                <option value="{{branch.id}}" ng-repeat="branch in branches">{{branch.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword" ng-model="newUser.password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <label for="cPassword">Password</label>
+            <input type="password" class="form-control" id="cPassword" ng-model="newUser.cPassword" placeholder="Confirm Password" required>
+        </div>
+        <hr>
+        <button type="button" ng-disabled="userForm.$invalid" ng-click="createUser()"  class="btn btn-default">Submit</button>
+    </form>
+    <div ng-show="!isCreating">
+        <h3>Users</h3>
+        <div class="btn-group" style="float:right">
+            <button class="btn btn-success"  ng-click="isCreating = true;">Add New</button>
+            <button class="btn btn-info" ng-click="getUsers()">Refresh</button>
+        </div>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <td><strong>S. No.</strong></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Role</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in users">
+                <td ng-bind="$index +1"></td>
+                <td ng-bind="row.name"></td>
+                <td ng-bind="row.type"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
